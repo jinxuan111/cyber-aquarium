@@ -23,7 +23,7 @@ export const BSC_MAINNET = {
   blockExplorerUrls: ['https://bscscan.com']
 };
 
-// 合约地址 (部署后填入)
+// 合约地址 (部署后需要更新这些地址)
 export const CONTRACTS = {
   FISH_TOKEN: process.env.REACT_APP_FISH_TOKEN_ADDRESS || '',
   AQUARIUM: process.env.REACT_APP_AQUARIUM_CONTRACT_ADDRESS || ''
@@ -34,7 +34,7 @@ export const CURRENT_NETWORK = process.env.REACT_APP_CHAIN_ID === '56'
   ? BSC_MAINNET 
   : BSC_TESTNET;
 
-// FishToken ABI (简化版)
+// FishToken ABI (简化版 - 只包含需要的函数)
 export const FISH_TOKEN_ABI = [
   "function name() view returns (string)",
   "function symbol() view returns (string)",
@@ -44,22 +44,31 @@ export const FISH_TOKEN_ABI = [
   "function transfer(address to, uint256 amount) returns (bool)",
   "function approve(address spender, uint256 amount) returns (bool)",
   "function allowance(address owner, address spender) view returns (uint256)",
-  "event Transfer(address indexed from, address indexed to, uint256 value)"
+  "event Transfer(address indexed from, address indexed to, uint256 value)",
+  "event Approval(address indexed owner, address indexed spender, uint256 value)"
 ];
 
-// CyberAquarium ABI (简化版)
+// CyberAquarium ABI (简化版 - 只包含需要的函数)
 export const AQUARIUM_ABI = [
-  "function mintGenesis(string memory tokenURI) payable",
-  "function breed(uint256 parent1Id, uint256 parent2Id, string memory tokenURI) returns (uint256)",
-  "function installCybernetics(uint256 tokenId)",
+  // 读取函数
+  "function ownerOf(uint256 tokenId) view returns (address)",
+  "function tokenURI(uint256 tokenId) view returns (string)",
   "function getUserFishes(address user) view returns (uint256[])",
   "function getFishInfo(uint256 tokenId) view returns (tuple(uint256 id, bytes32 genesHash, uint8 generation, uint256 birthTime, uint256 lastBreedTime, uint256 parent1, uint256 parent2, uint8 rarity, bool isGenesis, uint8 cyberneticsCount))",
-  "function ownerOf(uint256 tokenId) view returns (address)",
   "function breedingCost() view returns (uint256)",
   "function mintingCost() view returns (uint256)",
   "function cyberneticsCost() view returns (uint256)",
+  "function genesisCount() view returns (uint256)",
+  
+  // 写入函数
+  "function mintGenesis(string memory tokenURI) payable",
+  "function breed(uint256 parent1Id, uint256 parent2Id, string memory tokenURI) returns (uint256)",
+  "function installCybernetics(uint256 tokenId)",
+  
+  // 事件
   "event FishMinted(address indexed owner, uint256 indexed tokenId, bool isGenesis)",
-  "event FishBred(uint256 indexed parent1, uint256 indexed parent2, uint256 indexed childId)"
+  "event FishBred(uint256 indexed parent1, uint256 indexed parent2, uint256 indexed childId)",
+  "event CyberneticsInstalled(uint256 indexed tokenId, uint8 count)"
 ];
 
 // PancakeSwap Router (用于添加流动性)
@@ -73,4 +82,12 @@ export const GAME_CONFIG = {
   FISH_ENERGY_COST: 0.1, // 每条鱼每秒消耗
   BREEDING_COOLDOWN: 86400, // 1 天 (秒)
   MAX_CYBERNETICS: 5
+};
+
+// 链接配置
+export const LINKS = {
+  BSCSCAN: CURRENT_NETWORK.blockExplorerUrls[0],
+  PANCAKESWAP: 'https://pancakeswap.finance',
+  FAUCET: 'https://testnet.binance.org/faucet-smart',
+  DOCS: 'https://docs.bnbchain.org'
 };
