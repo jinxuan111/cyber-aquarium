@@ -1,0 +1,57 @@
+# 依赖
+node_modules/
+frontend/node_modules/
+
+# 环境变量 (包含私钥,绝对不要提交!)
+.env
+.env.local
+.env.production
+
+# Hardhat
+cache/
+artifacts/
+typechain/
+typechain-types/
+
+# 部署信息 (可能包含敏感数据)
+deployments/
+deployments-*.json
+
+# 测试覆盖率
+coverage/
+coverage.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 构建输出
+frontend/build/
+frontend/dist/
+dist/
+build/
+
+# 日志
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# 临时文件
+.temp/
+tmp/
+
+# 合约编译生成文件
+*.dbg.json
+
+# Hardhat Gas Reporter
+gas-report.txt
+
+# 其他
+.openzeppelin/
+.soliditycoverage

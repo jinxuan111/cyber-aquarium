@@ -1,0 +1,163 @@
+.cyber-fish {
+  position: absolute;
+  cursor: pointer;
+  transition: filter 0.3s, transform 0.3s;
+  z-index: 10;
+}
+
+.cyber-fish:hover {
+  filter: brightness(1.3);
+  z-index: 20;
+}
+
+.cyber-fish.selected {
+  filter: brightness(1.5) drop-shadow(0 0 10px currentColor);
+  z-index: 30;
+}
+
+.fish-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+}
+
+/* 选择标记 */
+.selection-marker {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 25px;
+  height: 25px;
+  border: 3px solid;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: inherit;
+  animation: pulse-marker 1s ease-in-out infinite;
+  z-index: 100;
+}
+
+@keyframes pulse-marker {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px currentColor;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px currentColor;
+  }
+}
+
+/* 信息卡片 */
+.fish-info-card {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  backdrop-filter: blur(10px);
+  z-index: 50;
+}
+
+.cyber-fish:hover .fish-info-card {
+  opacity: 1;
+}
+
+.fish-id {
+  font-weight: bold;
+  color: #0ff;
+  margin-bottom: 3px;
+}
+
+.fish-gen {
+  color: rgba(0, 255, 255, 0.7);
+  font-size: 9px;
+}
+
+.fish-cyber {
+  color: #ff0;
+  font-size: 9px;
+  margin-top: 2px;
+}
+
+.fish-rarity {
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 3px;
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* 稀有度样式 */
+.rarity-common {
+  filter: drop-shadow(0 0 3px rgba(128, 128, 128, 0.5));
+}
+
+.rarity-rare {
+  filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.7));
+}
+
+.rarity-legendary {
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.9));
+  animation: legendary-glow 2s ease-in-out infinite;
+}
+
+@keyframes legendary-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.9));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
+  }
+}
+
+/* 传奇光环 */
+.legendary-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  animation: aura-pulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes aura-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .fish-info-card {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+  
+  .selection-marker {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+}

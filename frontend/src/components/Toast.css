@@ -1,0 +1,85 @@
+.toast {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  padding: 16px 24px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10000;
+  backdrop-filter: blur(10px);
+  animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-out 2.7s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.toast-icon {
+  font-size: 20px;
+}
+
+.toast-message {
+  max-width: 300px;
+}
+
+.toast-info {
+  background: rgba(0, 255, 255, 0.2);
+  border: 2px solid #0ff;
+  color: #0ff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.toast-success {
+  background: rgba(0, 255, 0, 0.2);
+  border: 2px solid #0f0;
+  color: #0f0;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.toast-error {
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid #f00;
+  color: #f00;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.toast-warning {
+  background: rgba(255, 255, 0, 0.2);
+  border: 2px solid #ff0;
+  color: #ff0;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .toast {
+    right: 15px;
+    left: 15px;
+    max-width: calc(100% - 30px);
+  }
+
+  .toast-message {
+    max-width: 100%;
+    font-size: 13px;
+  }
+}

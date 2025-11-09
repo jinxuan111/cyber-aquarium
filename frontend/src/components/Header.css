@@ -1,0 +1,203 @@
+.header {
+  height: 80px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+  position: relative;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  font-size: 28px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 0 0 10px #0ff;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo-icon {
+  font-size: 36px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.stats {
+  display: flex;
+  gap: 25px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  min-width: 80px;
+}
+
+.stat-icon {
+  font-size: 20px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: rgba(0, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.wallet-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.wallet-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid #0f0;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.wallet-badge.connected {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+  }
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0f0;
+  box-shadow: 0 0 5px #0f0;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.wallet-address {
+  font-family: 'Courier New', monospace;
+  color: #0f0;
+  text-shadow: 0 0 5px #0f0;
+}
+
+.bnb-balance {
+  font-size: 12px;
+  color: rgba(0, 255, 255, 0.7);
+  text-align: right;
+  padding-right: 16px;
+}
+
+.connect-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+.connect-btn span:first-child {
+  font-size: 20px;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .header-left {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .stats {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .stat-item {
+    flex: 1;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .logo-icon {
+    font-size: 28px;
+  }
+
+  .stat-item {
+    padding: 6px 12px;
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+  }
+
+  .wallet-badge {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,184 @@
+.sidebar {
+  width: 400px;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid rgba(0, 255, 255, 0.3);
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 操作面板 */
+.operations-panel {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.operations {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.operation-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.operation-btn span:first-child {
+  font-size: 20px;
+}
+
+.operation-cost {
+  font-size: 12px;
+  color: rgba(0, 255, 255, 0.7);
+  text-align: center;
+  margin-top: -10px;
+}
+
+.requirement {
+  color: #ff0;
+}
+
+/* 未连接提示 */
+.not-connected-message {
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(255, 255, 0, 0.1);
+  border: 2px dashed rgba(255, 255, 0, 0.5);
+  border-radius: 10px;
+}
+
+.warning-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.not-connected-message p {
+  color: #ff0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 鱼类详情面板 */
+.fish-detail-panel {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gene-hash {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+/* 提示面板 */
+.tips-panel {
+  background: rgba(0, 100, 100, 0.1);
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tips-list li {
+  padding: 10px;
+  background: rgba(0, 255, 255, 0.05);
+  border-left: 3px solid rgba(0, 255, 255, 0.5);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(0, 255, 255, 0.9);
+}
+
+.tips-list li::before {
+  content: '→ ';
+  color: #0ff;
+  font-weight: bold;
+}
+
+/* 链接面板 */
+.links-panel {
+  background: rgba(0, 0, 100, 0.1);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-btn {
+  padding: 12px 16px;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 6px;
+  color: #0ff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #0ff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 2px solid rgba(0, 255, 255, 0.3);
+    max-height: 50vh;
+  }
+
+  .operations-panel {
+    position: static;
+  }
+
+  .operation-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
