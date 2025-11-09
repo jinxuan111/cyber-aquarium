@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useWeb3 } from './hooks/useWeb3';
 import Aquarium from './components/Aquarium';
 import Header from './components/Header';
@@ -32,13 +32,13 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   // 显示提示
-  const showToast = (message, type = 'info') => {
+  const showToast = useCallback((message, type = 'info') => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3000);
-  };
+  }, []);
 
   // 加载用户的鱼
-  const loadUserFishes = async () => {
+  const loadUserFishes = useCallback(async () => {
     if (!aquarium || !account) return;
 
     try {
@@ -76,7 +76,7 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [aquarium, account, showToast]);
 
   // 铸造创世鱼
   const mintGenesis = async () => {
@@ -101,7 +101,7 @@ function App() {
       // 铸造
       showToast('正在铸造创世鱼...', 'info');
       const mintTx = await aquarium.mintGenesis('ipfs://genesis-fish');
-      const receipt = await mintTx.wait();
+      await mintTx.wait();
       
       showToast('🎉 创世鱼铸造成功!', 'success');
       
@@ -149,7 +149,7 @@ function App() {
         selectedFish2.id,
         'ipfs://bred-fish'
       );
-      const receipt = await breedTx.wait();
+      await breedTx.wait();
       
       showToast('🐟 繁殖成功!', 'success');
       
@@ -263,7 +263,7 @@ function App() {
     if (account && aquarium) {
       loadUserFishes();
     }
-  }, [account, aquarium]);
+  }, [account, aquarium, loadUserFishes]);
 
   return (
     <div className="app">
